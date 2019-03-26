@@ -89,7 +89,7 @@ class PlusNode extends StmtNode {
     }
 }
 
-class BeginNode extends StmtNode{
+class BlockNode extends StmtNode{
 
     private StmtNode stmtNode;
 

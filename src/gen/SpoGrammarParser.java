@@ -31,7 +31,7 @@ public class SpoGrammarParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'+'", "'('", "')'", "'fi'", "'od'", "'if'", "';'", "'while'", 
-			"'begin'", "'end'", "'else'", "'do'", "'='"
+			"'{'", "'}'", "'else'", "'do'", "'='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

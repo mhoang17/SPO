@@ -11,6 +11,8 @@ stmts: stmts Semi stmt
 e: e Plus t
     |t;
 t: ID | NUM;
+
+
 Plus: '+';
 Lparen: '(';
 Rparen: ')';
@@ -19,8 +21,8 @@ OD: 'od';
 IF: 'if';
 Semi: ';';
 While: 'while';
-Begin: 'begin';
-End: 'end';
+Begin: '{';
+End: '}';
 Else: 'else';
 DO: 'do';
 Assign: '=';

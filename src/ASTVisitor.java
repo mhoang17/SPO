@@ -18,11 +18,12 @@ public class ASTVisitor extends SpoGrammarBaseVisitor <StmtNode>{
             assignment.setExpression(super.visitStmt(ctx));
 
             return assignment;
-        } else if(ctx.Begin() != null){
-            System.out.println(ctx.Begin().getText());
-            BeginNode begin = new BeginNode();
-            begin.setStmtNode(super.visitStmts(ctx.stmts()));
-            return begin;
+        }
+
+        if(ctx.Begin() != null){
+            BlockNode blockNode = new BlockNode();
+            blockNode.setStmtNode(visitStmts(ctx.stmts()));
+            return blockNode;
         }
 
         return super.visitStmt(ctx);
@@ -30,17 +31,15 @@ public class ASTVisitor extends SpoGrammarBaseVisitor <StmtNode>{
 
     @Override
     public StmtNode visitStmts(SpoGrammarParser.StmtsContext ctx) {
-
         //Detect semicolon
-        if(ctx.Semi() != null){
+        if(ctx.stmts() != null){
             System.out.println("Stmts: " + ctx.Semi());
 
             SemiNode semi = new SemiNode();
             semi.setLeft(super.visitStmts(ctx));
 
             //Somethings wrong with this line (double the amount of terminals)
-            //semi.setRight(super.visitStmt(ctx.stmt()));
-
+            semi.setRight(visitStmt(ctx.stmt()));
             return semi;
         }
         return super.visitStmts(ctx);
@@ -57,6 +56,7 @@ public class ASTVisitor extends SpoGrammarBaseVisitor <StmtNode>{
             plus.setRight(super.visitT(ctx.t()));
             return plus;
         }
+
         return super.visitE(ctx);
     }
 
